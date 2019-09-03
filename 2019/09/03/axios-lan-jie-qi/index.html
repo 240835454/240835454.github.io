@@ -501,8 +501,8 @@
 <span class="token punctuation">)</span></code></pre>
 <h4 id="将axios实例暴露出去"><a href="#将axios实例暴露出去" class="headerlink" title="将axios实例暴露出去"></a>将axios实例暴露出去</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> service<span class="token punctuation">;</span></code></pre>
 <p>这样一个简单的拦截器就完成了</p>
-<h4 id="在main-js中进行引用，并配置一个别名（-ajax）来进行调用"><a href="#在main-js中进行引用，并配置一个别名（-ajax）来进行调用" class="headerlink" title="在main.js中进行引用，并配置一个别名（$ajax）来进行调用"></a>在main.js中进行引用，并配置一个别名（$ajax）来进行调用</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> axios <span class="token keyword">from</span> 'axios
-<span class="token string">'import '</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span>axios<span class="token punctuation">.</span>js'    <span class="token comment" spellcheck="true">//axios.js的路径</span>
+<h4 id="在main-js中进行引用，并配置一个别名（-ajax）来进行调用"><a href="#在main-js中进行引用，并配置一个别名（-ajax）来进行调用" class="headerlink" title="在main.js中进行引用，并配置一个别名（$ajax）来进行调用"></a>在main.js中进行引用，并配置一个别名（$ajax）来进行调用</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span>
+<span class="token keyword">import</span> <span class="token string">'../axios.js'</span>    <span class="token comment" spellcheck="true">//axios.js的路径</span>
 Vue<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$ajax <span class="token operator">=</span> axios</code></pre>
 <h4 id="应用：一个简单的登录接口"><a href="#应用：一个简单的登录接口" class="headerlink" title="应用：一个简单的登录接口"></a>应用：一个简单的登录接口</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$ajax</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
 　　method<span class="token punctuation">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
@@ -770,50 +770,36 @@ axios<span class="token punctuation">.</span>interceptors<span class="token punc
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/09/03/axios-lan-jie-qi/">
+                <a href="/2019/09/03/qian-duan-gou-jian-gong-ju-gulpjs-de-shi-yong-jie-shao-ji-ji-qiao/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="axios拦截器介绍">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">axios拦截器介绍</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            axios拦截器介绍页面发送http请求，很多情况我们要对请求和其响应进行特定的处理；如果请求数非常多，单独对每一个请求进行处理会变得非常麻烦，程序的优雅性也会大打折扣。好在强大的axios为开发者提供了这样一个API：拦截器。拦截器分为 
+                            前端构建工具gulpjs的使用介绍及技巧gulpjs是一个前端构建工具，与gruntjs相比，gulpjs无需写一大堆繁杂的配置参数，API也非常简单，学习起来很容易，而且gulpjs使用的是nodejs中stream来读取和操作数据，其速
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-03
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-03
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/前端/" class="post-category" target="_blank">
-                                    前端
-                                </a>
-                            
+                            <i class="fa fa-user fa-fw"></i>
+                            Tanz
                             
                         </span>
                     </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/javascript/" target="_blank">
-                        <span class="chip bg-color">javascript</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -969,7 +955,7 @@ axios<span class="token punctuation">.</span>interceptors<span class="token punc
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">1.2k</span>
+                <span class="white-color">6.8k</span>
             
 
             

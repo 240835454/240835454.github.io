@@ -1,0 +1,1215 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Tanz">
+    <meta name="description" content="前端构建工具gulpjs的使用介绍及技巧gulpjs是一个前端构建工具，与gruntjs相比，gulpjs无需写一大堆繁杂的配置参数，API也非常简单，学习起来很容易，而且gulpjs使用的是nodejs中stream来读取和操作数据，其速">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Tanz</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Tanz</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Tanz</div>
+        <div class="logo-desc">
+            
+            To Be Free And Unafraid
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #6dd5ed;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-09-03
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        5.6k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        22 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="前端构建工具gulpjs的使用介绍及技巧"><a href="#前端构建工具gulpjs的使用介绍及技巧" class="headerlink" title="前端构建工具gulpjs的使用介绍及技巧"></a>前端构建工具gulpjs的使用介绍及技巧</h2><p><a href="http://gulpjs.com/" target="_blank" rel="noopener">gulpjs</a>是一个前端构建工具，与<a href="http://gruntjs.com/" target="_blank" rel="noopener">gruntjs</a>相比，gulpjs无需写一大堆繁杂的配置参数，API也非常简单，学习起来很容易，而且gulpjs使用的是nodejs中<a href="http://nodejs.org/api/stream.html" target="_blank" rel="noopener">stream</a>来读取和操作数据，其速度更快。如果你还没有使用过前端构建工具，或者觉得gruntjs太难用的话，那就尝试一下gulp吧。</p>
+<h1 id="1、gulp的安装"><a href="#1、gulp的安装" class="headerlink" title="1、gulp的安装"></a>1、gulp的安装</h1><p>首先确保你已经正确安装了nodejs环境。然后以全局方式安装gulp：</p>
+<pre class=" language-javascript"><code class="language-javascript">npm install <span class="token operator">-</span>g gulp</code></pre>
+<p>全局安装gulp后，还需要在每个要使用gulp的项目中都单独安装一次。把目录切换到你的项目文件夹中，然后在命令行中执行：</p>
+<pre class=" language-javascript"><code class="language-javascript">npm install gulp</code></pre>
+<p>如果想在安装的时候把gulp写进项目package.json文件的依赖中，则可以加上–save-dev：</p>
+<pre class=" language-javascript"><code class="language-javascript">npm install <span class="token operator">--</span>save<span class="token operator">-</span>dev gulp</code></pre>
+<p>这样就完成了gulp的安装。至于为什么在全局安装gulp后，还需要在项目中本地安装一次，有兴趣的可以看下stackoverflow上有人做出的回答：<a href="http://stackoverflow.com/questions/22115400/why-do-we-need-to-install-gulp-globally-and-locally" target="_blank" rel="noopener">why-do-we-need-to-install-gulp-globally-and-locally</a>、<a href="http://stackoverflow.com/questions/25713618/what-is-the-point-of-double-install-in-gulp" target="_blank" rel="noopener">what-is-the-point-of-double-install-in-gulp</a>。大体就是为了版本的灵活性，但如果没理解那也不必太去纠结这个问题，只需要知道通常我们是要这样做就行了。</p>
+<h1 id="2、开始使用gulp"><a href="#2、开始使用gulp" class="headerlink" title="2、开始使用gulp"></a>2、开始使用gulp</h1><h3 id="2-1-建立gulpfile-js文件"><a href="#2-1-建立gulpfile-js文件" class="headerlink" title="2.1 建立gulpfile.js文件"></a>2.1 建立gulpfile.js文件</h3><p>就像gruntjs需要一个<code>Gruntfile.js</code>文件一样，gulp也需要一个文件作为它的主文件，在gulp中这个文件叫做<code>gulpfile.js</code>。新建一个文件名为<code>gulpfile.js</code>的文件，然后放到你的项目目录中。之后要做的事情就是在<code>gulpfile.js</code>文件中定义我们的任务了。下面是一个最简单的<code>gulpfile.js</code>文件内容示例，它定义了一个默认的任务。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'default'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'hello world'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>此时我们的目录结构是这样子的：</p>
+<p>├── gulpfile.js<br>├── node_modules<br>│ └── gulp<br>└── package.json</p>
+<h3 id="2-2-运行gulp任务"><a href="#2-2-运行gulp任务" class="headerlink" title="2.2 运行gulp任务"></a>2.2 运行gulp任务</h3><p>要运行gulp任务，只需切换到存放<code>gulpfile.js</code>文件的目录(windows平台请使用cmd或者Power Shell等工具)，然后在命令行中执行<code>gulp</code>命令就行了，<code>gulp</code>后面可以加上要执行的任务名，例如<code>gulp task1</code>，如果没有指定任务名，则会执行任务名为<code>default</code>的默认任务。</p>
+<h1 id="3、gulp的API介绍"><a href="#3、gulp的API介绍" class="headerlink" title="3、gulp的API介绍"></a>3、gulp的API介绍</h1><p>使用gulp，仅需知道4个API即可：<code>gulp.task()</code>,<code>gulp.src()</code>,<code>gulp.dest()</code>,<code>gulp.watch()</code>，所以很容易就能掌握，但有几个地方需理解透彻才行，我会在下面一一说明。为了避免出现理解偏差，建议先看一遍<a href="https://github.com/gulpjs/gulp/blob/master/docs/API.md" target="_blank" rel="noopener">官方文档</a>。</p>
+<h3 id="3-1-gulp-src"><a href="#3-1-gulp-src" class="headerlink" title="3.1 gulp.src()"></a>3.1 gulp.src()</h3><p>在介绍这个API之前我们首先来说一下Grunt.js和Gulp.js工作方式的一个区别。Grunt主要是以文件为媒介来运行它的工作流的，比如在Grunt中执行完一项任务后，会把结果写入到一个临时文件中，然后可以在这个临时文件内容的基础上执行其它任务，执行完成后又把结果写入到临时文件中，然后又以这个为基础继续执行其它任务…就这样反复下去。而在Gulp中，使用的是Nodejs中的<a href="http://nodejs.org/api/stream.html" target="_blank" rel="noopener">stream</a>(流)，首先获取到需要的stream，然后可以通过stream的<code>pipe()</code>方法把流导入到你想要的地方，比如Gulp的插件中，经过插件处理后的流又可以继续导入到其他插件中，当然也可以把流写入到文件中。所以Gulp是以stream为媒介的，它不需要频繁的生成临时文件，这也是Gulp的速度比Grunt快的一个原因。再回到正题上来，<code>gulp.src()</code>方法正是用来获取流的，但要注意这个流里的内容不是原始的文件流，而是一个虚拟文件对象流(<a href="https://github.com/wearefractal/vinyl-fs" target="_blank" rel="noopener">Vinyl files</a>)，这个虚拟文件对象中存储着原始文件的路径、文件名、内容等信息，这个我们暂时不用去深入理解，你只需简单的理解可以用这个方法来读取你需要操作的文件就行了。其语法为：</p>
+<pre class=" language-javascript"><code class="language-javascript">gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span>globs<span class="token punctuation">[</span><span class="token punctuation">,</span> options<span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
+<p><strong>globs</strong>参数是文件匹配模式(类似正则表达式)，用来匹配文件路径(包括文件名)，当然这里也可以直接指定某个具体的文件路径。当有多个匹配模式时，该参数可以为一个数组。<br><strong>options</strong>为可选参数。通常情况下我们不需要用到。</p>
+<p>下面我们重点说说Gulp用到的glob的匹配规则以及一些文件匹配技巧。<br>Gulp内部使用了<a href="https://github.com/isaacs/node-glob" target="_blank" rel="noopener">node-glob</a>模块来实现其文件匹配功能。我们可以使用下面这些特殊的字符来匹配我们想要的文件：</p>
+<ul>
+<li><code>*</code> 匹配文件路径中的0个或多个字符，但不会匹配路径分隔符，除非路径分隔符出现在末尾</li>
+<li><code>**</code> 匹配路径中的0个或多个目录及其子目录,需要单独出现，即它左右不能有其他东西了。如果出现在末尾，也能匹配文件。</li>
+<li><code>?</code> 匹配文件路径中的一个字符(不会匹配路径分隔符)</li>
+<li><code>[...]</code> 匹配方括号中出现的字符中的任意一个，当方括号中第一个字符为<code>^</code>或<code>!</code>时，则表示不匹配方括号中出现的其他字符中的任意一个，类似js正则表达式中的用法</li>
+<li><code>!(pattern|pattern|pattern)</code> 匹配任何与括号中给定的任一模式都不匹配的</li>
+<li><code>?(pattern|pattern|pattern)</code> 匹配括号中给定的任一模式0次或1次，类似于js正则中的(pattern|pattern|pattern)?</li>
+<li><code>+(pattern|pattern|pattern)</code> 匹配括号中给定的任一模式至少1次，类似于js正则中的(pattern|pattern|pattern)+</li>
+<li><code>*(pattern|pattern|pattern)</code> 匹配括号中给定的任一模式0次或多次，类似于js正则中的(pattern|pattern|pattern)*</li>
+<li><code>@(pattern|pattern|pattern)</code> 匹配括号中给定的任一模式1次，类似于js正则中的(pattern|pattern|pattern)</li>
+</ul>
+<p>下面以一系列例子来加深理解</p>
+<ul>
+<li><code>*</code> 能匹配 <code>a.js</code>,<code>x.y</code>,<code>abc</code>,<code>abc/</code>,但不能匹配<code>a/b.js</code></li>
+<li><code>*.*</code> 能匹配 <code>a.js</code>,<code>style.css</code>,<code>a.b</code>,<code>x.y</code></li>
+<li><code>*/*/*.js</code> 能匹配 <code>a/b/c.js</code>,<code>x/y/z.js</code>,不能匹配<code>a/b.js</code>,<code>a/b/c/d.js</code></li>
+<li><code>**</code> 能匹配 <code>abc</code>,<code>a/b.js</code>,<code>a/b/c.js</code>,<code>x/y/z</code>,<code>x/y/z/a.b</code>,能用来匹配所有的目录和文件</li>
+<li><code>**/*.js</code> 能匹配 <code>foo.js</code>,<code>a/foo.js</code>,<code>a/b/foo.js</code>,<code>a/b/c/foo.js</code></li>
+<li><code>a/**/z</code> 能匹配 <code>a/z</code>,<code>a/b/z</code>,<code>a/b/c/z</code>,<code>a/d/g/h/j/k/z</code></li>
+<li><code>a/**b/z</code> 能匹配 <code>a/b/z</code>,<code>a/sb/z</code>,但不能匹配<code>a/x/sb/z</code>,因为只有单<code>**</code>单独出现才能匹配多级目录</li>
+<li><code>?.js</code> 能匹配 <code>a.js</code>,<code>b.js</code>,<code>c.js</code></li>
+<li><code>a??</code> 能匹配 <code>a.b</code>,<code>abc</code>,但不能匹配<code>ab/</code>,因为它不会匹配路径分隔符</li>
+<li><code>[xyz].js</code> 只能匹配 <code>x.js</code>,<code>y.js</code>,<code>z.js</code>,不会匹配<code>xy.js</code>,<code>xyz.js</code>等,整个中括号只代表一个字符</li>
+<li><code>[^xyz].js</code> 能匹配 <code>a.js</code>,<code>b.js</code>,<code>c.js</code>等,不能匹配<code>x.js</code>,<code>y.js</code>,<code>z.js</code></li>
+</ul>
+<p>当有多种匹配模式时可以使用数组</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">//使用数组的方式来匹配多种文件</span>
+gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'js/*.js'</span><span class="token punctuation">,</span><span class="token string">'css/*.css'</span><span class="token punctuation">,</span><span class="token string">'*.html'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
+<p>使用数组的方式还有一个好处就是可以很方便的使用排除模式，在数组中的单个匹配模式前加上<code>!</code>即是排除模式，它会在匹配的结果中排除这个匹配，要注意一点的是不能在数组中的第一个元素中使用排除模式</p>
+<pre class=" language-javascript"><code class="language-javascript">gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">*</span><span class="token punctuation">.</span>js<span class="token punctuation">,</span><span class="token string">'!b*.js'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//匹配所有js文件，但排除掉以b开头的js文件</span>
+gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'!b*.js'</span><span class="token punctuation">,</span><span class="token operator">*</span><span class="token punctuation">.</span>js<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//不会排除任何文件，因为排除模式不能出现在数组的第一个元素中</span></code></pre>
+<p>此外，还可以使用展开模式。展开模式以花括号作为定界符，根据它里面的内容，会展开为多个模式，最后匹配的结果为所有展开的模式相加起来得到的结果。展开的例子如下：</p>
+<ul>
+<li><code>a{b,c}d</code> 会展开为 <code>abd</code>,<code>acd</code></li>
+<li><code>a{b,}c</code> 会展开为 <code>abc</code>,<code>ac</code></li>
+<li><code>a{0..3}d</code> 会展开为 <code>a0d</code>,<code>a1d</code>,<code>a2d</code>,<code>a3d</code></li>
+<li><code>a{b,c{d,e}f}g</code> 会展开为 <code>abg</code>,<code>acdfg</code>,<code>acefg</code></li>
+<li><code>a{b,c}d{e,f}g</code> 会展开为 <code>abdeg</code>,<code>acdeg</code>,<code>abdeg</code>,<code>abdfg</code></li>
+</ul>
+<h3 id="3-2-gulp-dest"><a href="#3-2-gulp-dest" class="headerlink" title="3.2 gulp.dest()"></a>3.2 gulp.dest()</h3><p>gulp.dest()方法是用来写文件的，其语法为：</p>
+<pre class=" language-javascript"><code class="language-javascript">gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span>path<span class="token punctuation">[</span><span class="token punctuation">,</span>options<span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
+<p><strong>path</strong>为写入文件的路径<br><strong>options</strong>为一个可选的参数对象，通常我们不需要用到</p>
+<p>要想使用好<code>gulp.dest()</code>这个方法，就要理解给它传入的路径参数与最终生成的文件的关系。<br>gulp的使用流程一般是这样子的：首先通过<code>gulp.src()</code>方法获取到我们想要处理的文件流，然后把文件流通过pipe方法导入到gulp的插件中，最后把经过插件处理后的流再通过pipe方法导入到<code>gulp.dest()</code>中，<code>gulp.dest()</code>方法则把流中的内容写入到文件中，这里首先需要弄清楚的一点是，我们给<code>gulp.dest()</code>传入的路径参数，只能用来指定要生成的文件的目录，而不能指定生成文件的文件名，它生成文件的文件名使用的是导入到它的文件流自身的文件名，所以<strong>生成的文件名是由导入到它的文件流决定的</strong>，即使我们给它传入一个带有文件名的路径参数，然后它也会把这个文件名当做是目录名，例如：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'script/jquery.js'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'dist/foo.js'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//最终生成的文件路径为 dist/foo.js/jquery.js,而不是dist/foo.js</span></code></pre>
+<p>要想改变文件名，可以使用插件<a href="https://www.npmjs.com/packages/gulp-rename" target="_blank" rel="noopener">gulp-rename</a></p>
+<p>下面说说生成的文件路径与我们给<code>gulp.dest()</code>方法传入的路径参数之间的关系。<br><code>gulp.dest(path)</code>生成的文件路径是我们传入的path参数后面再加上<code>gulp.src()</code>中有通配符开始出现的那部分路径。例如：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">reruire</span><span class="token punctuation">(</span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//有通配符开始出现的那部分路径为 **</span><span class="token comment" spellcheck="true">/*.js
+gulp.src('script/**/</span><span class="token operator">*</span><span class="token punctuation">.</span>js'<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'dist'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//最后生成的文件路径为 dist</span><span class="token comment" spellcheck="true">/**/</span><span class="token operator">*</span><span class="token punctuation">.</span>js
+<span class="token comment" spellcheck="true">//如果 **/*.js 匹配到的文件为 jquery/jquery.js ,则生成的文件路径为 dist/jquery/jquery.js</span></code></pre>
+<p>再举更多一点的例子</p>
+<pre class=" language-javascript"><code class="language-javascript">gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'script/avalon/avalon.js'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//没有通配符出现的情况</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'dist'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//最后生成的文件路径为 dist/avalon.js</span>
+
+<span class="token comment" spellcheck="true">//有通配符开始出现的那部分路径为 **/underscore.js</span>
+gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'script/**/underscore.js'</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">//假设匹配到的文件为script/util/underscore.js</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'dist'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//则最后生成的文件路径为 dist/util/underscore.js</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'script/*'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//有通配符出现的那部分路径为 *</span>
+    <span class="token comment" spellcheck="true">//假设匹配到的文件为script/zepto.js    </span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'dist'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//则最后生成的文件路径为 dist/zepto.js</span></code></pre>
+<p>通过指定<code>gulp.src()</code>方法配置参数中的<code>base</code>属性，我们可以更灵活的来改变<code>gulp.dest()</code>生成的文件路径。<br>当我们没有在<code>gulp.src()</code>方法中配置<code>base</code>属性时，<code>base</code>的默认值为通配符开始出现之前那部分路径，例如：</p>
+<pre class=" language-javascript"><code class="language-javascript">gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'app/src/**/*.css'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//此时base的值为 app/src</span></code></pre>
+<p>上面我们说的<code>gulp.dest()</code>所生成的文件路径的规则，其实也可以理解成，用我们给<code>gulp.dest()</code>传入的路径替换掉<code>gulp.src()</code>中的<code>base</code>路径，最终得到生成文件的路径。</p>
+<pre class=" language-javascript"><code class="language-javascript">gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'app/src/**/*.css'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//此时base的值为app/src,也就是说它的base路径为app/src</span>
+     <span class="token comment" spellcheck="true">//设该模式匹配到了文件 app/src/css/normal.css</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'dist'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//用dist替换掉base路径，最终得到 dist/css/normal.css</span></code></pre>
+<p>所以改变base路径后，<code>gulp.dest()</code>生成的文件路径也会改变</p>
+<pre class=" language-javascript"><code class="language-javascript">gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'script/lib/*.js'</span><span class="token punctuation">)</span> 
+<span class="token comment" spellcheck="true">//没有配置base参数，此时默认的base路径为script/lib</span>
+    <span class="token comment" spellcheck="true">//假设匹配到的文件为script/lib/jquery.js</span>
+
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'build'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//生成的文件路径为 build/jquery.js</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'script/lib/*.js, {base:'</span>script<span class="token string">'}'</span><span class="token punctuation">)</span> 
+<span class="token comment" spellcheck="true">//配置了base参数，此时base路径为script</span>
+    <span class="token comment" spellcheck="true">//假设匹配到的文件为script/lib/jquery.js</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'build'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//此时生成的文件路径为 build/lib/jquery.js    </span></code></pre>
+<p>用<code>gulp.dest()</code>把文件流写入文件后，文件流仍然可以继续使用。</p>
+<h3 id="3-3-gulp-task"><a href="#3-3-gulp-task" class="headerlink" title="3.3 gulp.task()"></a>3.3 gulp.task()</h3><p><code>gulp.task</code>方法用来定义任务，内部使用的是<a href="https://github.com/robrich/orchestrator" target="_blank" rel="noopener">Orchestrator</a>，其语法为：</p>
+<pre class=" language-javascript"><code class="language-javascript">gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span>name<span class="token punctuation">[</span><span class="token punctuation">,</span> deps<span class="token punctuation">]</span><span class="token punctuation">,</span> fn<span class="token punctuation">)</span></code></pre>
+<p><strong>name</strong> 为任务名<br><strong>deps</strong> 是当前定义的任务需要依赖的其他任务，为一个数组。当前定义的任务会在所有依赖的任务执行完毕后才开始执行。如果没有依赖，则可省略这个参数<br><strong>fn</strong> 为任务函数，我们把任务要执行的代码都写在里面。该参数也是可选的。</p>
+<pre class=" language-javascript"><code class="language-javascript">gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'mytask'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'array'</span><span class="token punctuation">,</span> <span class="token string">'of'</span><span class="token punctuation">,</span> <span class="token string">'task'</span><span class="token punctuation">,</span> <span class="token string">'names'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//定义一个有依赖的任务</span>
+  <span class="token comment" spellcheck="true">// Do something</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><code>gulp.task()</code>这个API没什么好讲的，但需要知道执行多个任务时怎么来控制任务执行的顺序。<br>gulp中执行多个任务，可以通过任务依赖来实现。例如我想要执行<code>one</code>,<code>two</code>,<code>three</code>这三个任务，那我们就可以定义一个空的任务，然后把那三个任务当做这个空的任务的依赖就行了：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">//只要执行default任务，就相当于把one,two,three这三个任务执行了</span>
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'default'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token string">'two'</span><span class="token punctuation">,</span><span class="token string">'three'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>如果任务相互之间没有依赖，任务会按你书写的顺序来执行，如果有依赖的话则会先执行依赖的任务。<br>但是如果某个任务所依赖的任务是异步的，就要注意了，gulp并不会等待那个所依赖的异步任务完成，而是会接着执行后续的任务。例如：</p>
+<pre class=" language-javascript"><code class="language-javascript">gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">//one是一个异步执行的任务</span>
+  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'one is done'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//two任务虽然依赖于one任务,但并不会等到one任务中的异步操作完成后再执行</span>
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'two'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'two is done'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>上面的例子中我们执行two任务时，会先执行one任务，但不会去等待one任务中的异步操作完成后再执行two任务，而是紧接着执行two任务。所以two任务会在one任务中的异步操作完成之前就执行了。</p>
+<p>那如果我们想等待异步任务中的异步操作完成后再执行后续的任务，该怎么做呢？<br>有三种方法可以实现：<br>第一：在异步操作完成后执行一个回调函数来通知gulp这个异步任务已经完成,这个回调函数就是任务函数的第一个参数。</p>
+<pre class=" language-javascript"><code class="language-javascript">gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span>cb<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//cb为任务函数提供的回调，用来通知任务已经完成</span>
+  <span class="token comment" spellcheck="true">//one是一个异步执行的任务</span>
+  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'one is done'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">cb</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//执行回调，表示这个异步任务已经完成</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//这时two任务会在one任务中的异步操作完成后再执行</span>
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'two'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'two is done'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>第二：定义任务时返回一个流对象。适用于任务就是操作gulp.src获取到的流的情况。</p>
+<pre class=" language-javascript"><code class="language-javascript">gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span>cb<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">var</span> stream <span class="token operator">=</span> gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'client/**/*.js'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">dosomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//dosomething()中有某些异步操作</span>
+      <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'build'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> stream<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'two'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'two is done'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>第三：返回一个promise对象，例如</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> Q <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'q'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//一个著名的异步处理的库 https://github.com/kriskowal/q</span>
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span>cb<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">var</span> deferred <span class="token operator">=</span> Q<span class="token punctuation">.</span><span class="token function">defer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">// 做一些异步操作</span>
+  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     deferred<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> deferred<span class="token punctuation">.</span>promise<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'two'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'two is done'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><code>gulp.task()</code>就这些了，主要是要知道当依赖是异步任务时的处理。</p>
+<h3 id="3-4-gulp-watch"><a href="#3-4-gulp-watch" class="headerlink" title="3.4 gulp.watch()"></a>3.4 gulp.watch()</h3><p><code>gulp.watch()</code>用来监视文件的变化，当文件发生变化后，我们可以利用它来执行相应的任务，例如文件压缩等。其语法为</p>
+<pre class=" language-javascript"><code class="language-javascript">gulp<span class="token punctuation">.</span><span class="token function">watch</span><span class="token punctuation">(</span>glob<span class="token punctuation">[</span><span class="token punctuation">,</span> opts<span class="token punctuation">]</span><span class="token punctuation">,</span> tasks<span class="token punctuation">)</span></code></pre>
+<p><strong>glob</strong> 为要监视的文件匹配模式，规则和用法与<code>gulp.src()</code>方法中的<code>glob</code>相同。<br><strong>opts</strong> 为一个可选的配置对象，通常不需要用到<br><strong>tasks</strong> 为文件变化后要执行的任务，为一个数组</p>
+<pre class=" language-javascript"><code class="language-javascript">gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'uglify'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">//do something</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'reload'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">//do something</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gulp<span class="token punctuation">.</span><span class="token function">watch</span><span class="token punctuation">(</span><span class="token string">'js/**/*.js'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'uglify'</span><span class="token punctuation">,</span><span class="token string">'reload'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><code>gulp.watch()</code>还有另外一种使用方式：</p>
+<pre class=" language-javascript"><code class="language-javascript">gulp<span class="token punctuation">.</span><span class="token function">watch</span><span class="token punctuation">(</span>glob<span class="token punctuation">[</span><span class="token punctuation">,</span> opts<span class="token punctuation">,</span> cb<span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
+<p><strong>glob</strong>和<strong>opts</strong>参数与第一种用法相同<br><strong>cb</strong>参数为一个函数。每当监视的文件发生变化时，就会调用这个函数,并且会给它传入一个对象，该对象包含了文件变化的一些信息，<code>type</code>属性为变化的类型，可以是<code>added</code>,<code>changed</code>,<code>deleted</code>；<code>path</code>属性为发生变化的文件的路径</p>
+<pre class=" language-javascript"><code class="language-javascript">gulp<span class="token punctuation">.</span><span class="token function">watch</span><span class="token punctuation">(</span><span class="token string">'js/**/*.js'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//变化类型 added为新增,deleted为删除，changed为改变 </span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//变化的文件的路径</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre>
+<h1 id="4、一些常用的gulp插件"><a href="#4、一些常用的gulp插件" class="headerlink" title="4、一些常用的gulp插件"></a>4、一些常用的gulp插件</h1><p>gulp的插件数量虽然没有grunt那么多，但也可以说是应有尽有了，下面列举一些常用的插件。</p>
+<h3 id="4-1-自动加载插件"><a href="#4-1-自动加载插件" class="headerlink" title="4.1 自动加载插件"></a>4.1 自动加载插件</h3><p>使用<a href="https://www.npmjs.com/package/gulp-load-plugins" target="_blank" rel="noopener">gulp-load-plugins</a><br>安装：<code>npm install --save-dev gulp-load-plugins</code><br>要使用gulp的插件，首先得用<code>require</code>来把插件加载进来，如果我们要使用的插件非常多，那我们的<code>gulpfile.js</code>文件开头可能就会是这个样子的：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true">//一些gulp插件,abcd这些命名只是用来举个例子</span>
+    a <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-a'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
+    b <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-b'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    c <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-c'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    d <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-d'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    e <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-e'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    f <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-f'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    g <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-g'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true">//更多的插件...</span>
+    z <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-z'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   </code></pre>
+<p>虽然这没什么问题，但会使我们的<code>gulpfile.js</code>文件变得很冗长，看上去不那么舒服。<code>gulp-load-plugins</code>插件正是用来解决这个问题。<br><code>gulp-load-plugins</code>这个插件能自动帮你加载<code>package.json</code>文件里的gulp插件。例如假设你的<code>package.json</code>文件里的依赖是这样的:</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
+  <span class="token string">"devDependencies"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"gulp"</span><span class="token punctuation">:</span> <span class="token string">"~3.6.0"</span><span class="token punctuation">,</span>
+    <span class="token string">"gulp-rename"</span><span class="token punctuation">:</span> <span class="token string">"~1.2.0"</span><span class="token punctuation">,</span>
+    <span class="token string">"gulp-ruby-sass"</span><span class="token punctuation">:</span> <span class="token string">"~0.4.3"</span><span class="token punctuation">,</span>
+    <span class="token string">"gulp-load-plugins"</span><span class="token punctuation">:</span> <span class="token string">"~0.5.1"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>然后我们可以在<code>gulpfile.js</code>中使用<code>gulp-load-plugins</code>来帮我们加载插件：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//加载gulp-load-plugins插件，并马上运行它</span>
+<span class="token keyword">var</span> plugins <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-load-plugins'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>然后我们要使用gulp-rename和gulp-ruby-sass这两个插件的时候，就可以使用<code>plugins.rename</code>和<code>plugins.rubySass</code>来代替了,也就是原始插件名去掉<code>gulp-</code>前缀，之后再转换为驼峰命名。<br>实质上<code>gulp-load-plugins</code>是为我们做了如下的转换</p>
+<pre class=" language-javascript"><code class="language-javascript">plugins<span class="token punctuation">.</span>rename <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-rename'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+plugins<span class="token punctuation">.</span>rubySass <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-ruby-sass'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><code>gulp-load-plugins</code>并不会一开始就加载所有<code>package.json</code>里的gulp插件，而是在我们需要用到某个插件的时候，才去加载那个插件。<br>最后要提醒的一点是，因为<code>gulp-load-plugins</code>是通过你的<code>package.json</code>文件来加载插件的，所以必须要保证你需要自动加载的插件已经写入到了<code>package.json</code>文件里，并且这些插件都是已经安装好了的。</p>
+<h3 id="4-2-重命名"><a href="#4-2-重命名" class="headerlink" title="4.2 重命名"></a>4.2 重命名</h3><p>使用<a href="https://www.npmjs.com/packages/gulp-rename" target="_blank" rel="noopener">gulp-rename</a><br>安装：<code>npm install --save-dev gulp-rename</code><br>用来重命名文件流中的文件。用<code>gulp.dest()</code>方法写入文件时，文件名使用的是文件流中的文件名，如果要想改变文件名，那可以在之前用<code>gulp-rename</code>插件来改变文件流中的文件名。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    rename <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-rename'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    uglify <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"gulp-uglify"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'rename'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'js/jquery.js'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">uglify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//压缩</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">rename</span><span class="token punctuation">(</span><span class="token string">'jquery.min.js'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//会将jquery.js重命名为jquery.min.js</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'js'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//关于gulp-rename的更多强大的用法请参考https://www.npmjs.com/package/gulp-rename</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="4-3-js文件压缩"><a href="#4-3-js文件压缩" class="headerlink" title="4.3 js文件压缩"></a>4.3 js文件压缩</h3><p>使用<a href="https://www.npmjs.com/packages/gulp-uglify" target="_blank" rel="noopener">gulp-uglify</a><br>安装：<code>npm install --save-dev gulp-uglify</code><br>用来压缩js文件，使用的是uglify引擎</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    uglify <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"gulp-uglify"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'minify-js'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'js/*.js'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 要压缩的js文件</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">uglify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//使用uglify进行压缩,更多配置请参考：</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'dist/js'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//压缩后的路径</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="4-4-css文件压缩"><a href="#4-4-css文件压缩" class="headerlink" title="4.4 css文件压缩"></a>4.4 css文件压缩</h3><p>使用<a href="https://www.npmjs.com/packages/gulp-minify-css" target="_blank" rel="noopener">gulp-minify-css</a><br>安装：<code>npm install --save-dev gulp-minify-css</code><br>要压缩css文件时可以使用该插件</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    minifyCss <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"gulp-minify-css"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'minify-css'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'css/*.css'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 要压缩的css文件</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">minifyCss</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//压缩css</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'dist/css'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="4-5-html文件压缩"><a href="#4-5-html文件压缩" class="headerlink" title="4.5 html文件压缩"></a>4.5 html文件压缩</h3><p>使用<a href="https://www.npmjs.com/packages/gulp-minify-html" target="_blank" rel="noopener">gulp-minify-html</a><br>安装：<code>npm install --save-dev gulp-minify-html</code><br>用来压缩html文件</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    minifyHtml <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"gulp-minify-html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'minify-html'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'html/*.html'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 要压缩的html文件</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">minifyHtml</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//压缩</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'dist/html'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="4-6-js代码检查"><a href="#4-6-js代码检查" class="headerlink" title="4.6 js代码检查"></a>4.6 js代码检查</h3><p>使用<a href="https://www.npmjs.com/packages/gulp-jshint" target="_blank" rel="noopener">gulp-jshint</a><br>安装：<code>npm install --save-dev gulp-jshint</code><br>用来检查js代码</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    jshint <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"gulp-jshint"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'jsLint'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'js/*.js'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">jshint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>jshint<span class="token punctuation">.</span><span class="token function">reporter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出检查结果</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="4-7-文件合并"><a href="#4-7-文件合并" class="headerlink" title="4.7 文件合并"></a>4.7 文件合并</h3><p>使用<a href="https://www.npmjs.com/packages/gulp-concat" target="_blank" rel="noopener">gulp-concat</a><br>安装：<code>npm install --save-dev gulp-concat</code><br>用来把多个文件合并为一个文件,我们可以用它来合并js或css文件等，这样就能减少页面的http请求数了</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    concat <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"gulp-concat"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'concat'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'js/*.js'</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//要合并的文件</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">concat</span><span class="token punctuation">(</span><span class="token string">'all.js'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 合并匹配到的js文件并命名为 "all.js"</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'dist/js'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="4-8-less和sass的编译"><a href="#4-8-less和sass的编译" class="headerlink" title="4.8 less和sass的编译"></a>4.8 less和sass的编译</h3><p>less使用<a href="https://www.npmjs.com/packages/gulp-less" target="_blank" rel="noopener">gulp-less</a>,安装：<code>npm install --save-dev gulp-less</code></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    less <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"gulp-less"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'compile-less'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'less/*.less'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">less</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'dist/css'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>sass使用<a href="https://www.npmjs.com/packages/gulp-sass" target="_blank" rel="noopener">gulp-sass</a>,安装：<code>npm install --save-dev gulp-sass</code></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    sass <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"gulp-sass"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'compile-sass'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'sass/*.sass'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">sass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'dist/css'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="4-9-图片压缩"><a href="#4-9-图片压缩" class="headerlink" title="4.9 图片压缩"></a>4.9 图片压缩</h3><p>可以使用<a href="https://github.com/sindresorhus/gulp-imagemin" target="_blank" rel="noopener">gulp-imagemin</a>插件来压缩jpg、png、gif等图片。<br>安装：<code>npm install --save-dev gulp-imagemin</code></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> imagemin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-imagemin'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> pngquant <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'imagemin-pngquant'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//png图片压缩插件</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'default'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'src/images/*'</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">imagemin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            progressive<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            use<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token function">pngquant</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true">//使用pngquant来压缩png图片</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'dist'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>gulp-imagemin的使用比较复杂一点，而且它本身也有很多<a href="https://www.npmjs.com/browse/keyword/imageminplugin" target="_blank" rel="noopener">插件</a>，建议去它的<a href="https://github.com/sindresorhus/gulp-imagemin" target="_blank" rel="noopener">项目主页</a>看看文档</p>
+<h3 id="4-10-自动刷新"><a href="#4-10-自动刷新" class="headerlink" title="4.10 自动刷新"></a>4.10 自动刷新</h3><p>使用<a href="https://github.com/vohof/gulp-livereload" target="_blank" rel="noopener">gulp-livereload</a>插件，安装:<code>npm install --save-dev gulp-livereload</code>。<br>当代码变化时，它可以帮我们自动刷新页面<br>该插件最好配合谷歌浏览器来使用，且要安装<a href="https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei" target="_blank" rel="noopener">livereload chrome extension</a>扩展插件,不能下载的请自行翻墙。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    less <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-less'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    livereload <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-livereload'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'less'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token string">'less/*.less'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">less</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>gulp<span class="token punctuation">.</span><span class="token function">dest</span><span class="token punctuation">(</span><span class="token string">'css'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><span class="token function">livereload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'watch'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  livereload<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//要在这里调用listen()方法</span>
+  gulp<span class="token punctuation">.</span><span class="token function">watch</span><span class="token punctuation">(</span><span class="token string">'less/*.less'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'less'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>本文转自<a href="https://www.cnblogs.com/2050/p/4198792.html" target="_blank" rel="noopener">前端构建工具gulpjs的使用介绍及技巧</a></p>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '966aa826f00878f4fd6f',
+        clientSecret: '8da0920de656bf3177bdb1f90d6d7b0972af1123',
+        repo: '240835454.github.io',
+        owner: '240835454',
+        admin: '240835454',
+        id: '2019-09-03T10-16-24',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2019/09/03/qian-duan-gou-jian-gong-ju-gulpjs-de-shi-yong-jie-shao-ji-ji-qiao/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            前端构建工具gulpjs的使用介绍及技巧gulpjs是一个前端构建工具，与gruntjs相比，gulpjs无需写一大堆繁杂的配置参数，API也非常简单，学习起来很容易，而且gulpjs使用的是nodejs中stream来读取和操作数据，其速
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            Tanz
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/09/03/axios-lan-jie-qi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="axios拦截器介绍">
+                        
+                        <span class="card-title">axios拦截器介绍</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            axios拦截器介绍页面发送http请求，很多情况我们要对请求和其响应进行特定的处理；如果请求数非常多，单独对每一个请求进行处理会变得非常麻烦，程序的优雅性也会大打折扣。好在强大的axios为开发者提供了这样一个API：拦截器。拦截器分为 
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/前端/" class="post-category" target="_blank">
+                                    前端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/javascript/" target="_blank">
+                        <span class="chip bg-color">javascript</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">6.8k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/240835454" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:240835454@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=240835454" class="tooltipped" data-tooltip="QQ联系我: 240835454" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

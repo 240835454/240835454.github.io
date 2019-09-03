@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-09-03T01:53:57.105Z</updated>
+  <updated>2019-09-03T02:16:07.045Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/09/03/qian-duan-gou-jian-gong-ju-gulpjs-de-shi-yong-jie-shao-ji-ji-qiao/"/>
+    <id>http://yoursite.com/2019/09/03/qian-duan-gou-jian-gong-ju-gulpjs-de-shi-yong-jie-shao-ji-ji-qiao/</id>
+    <published>2019-09-03T02:16:24.759Z</published>
+    <updated>2019-09-03T02:16:07.045Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前端构建工具gulpjs的使用介绍及技巧&quot;&gt;&lt;a href=&quot;#前端构建工具gulpjs的使用介绍及技巧&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>axios拦截器介绍</title>
     <link href="http://yoursite.com/2019/09/03/axios-lan-jie-qi/"/>
     <id>http://yoursite.com/2019/09/03/axios-lan-jie-qi/</id>
     <published>2019-09-03T01:54:30.698Z</published>
-    <updated>2019-09-03T01:53:57.105Z</updated>
+    <updated>2019-09-03T02:02:37.569Z</updated>
     
     <summary type="html">
     
