@@ -452,11 +452,11 @@
 <h3 id="一、什么是跨域"><a href="#一、什么是跨域" class="headerlink" title="一、什么是跨域"></a>一、什么是跨域</h3><p>跨域是指一个域下的文档或脚本试图去请求另一个域下的资源，这里跨域是广义的。</p>
 <h6 id="广义的跨域："><a href="#广义的跨域：" class="headerlink" title="广义的跨域："></a>广义的跨域：</h6><ul>
 <li>资源跳转： A链接、重定向、表单提交。</li>
-<li>资源嵌入： <link>、<script>、<img>、<frame>等dom标签，还有样式中background:url()、@font-face()等文件外链。</li>
+<li>资源嵌入： link、script、img、frame等dom标签，还有样式中background:url()、@font-face()等文件外链。</li>
 <li>脚本请求： js发起的ajax请求、dom和js对象的跨域操作等。</li>
 </ul>
 <p>其实我们通常所说的跨域是狭义的，是由浏览器同源策略限制的一类请求场景。</p>
-<h6 id="同源策略："><a href="#同源策略：" class="headerlink" title="同源策略："></a>同源策略：</h6><p>同源策略/SOP（Same origin policy）是一种约定，由Netscape公司1995年引入浏览器，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，浏览器很容易受到XSS、CSFR等攻击。所谓同源是指"协议+域名+端口"三者相同，即便两个不同的域名指向同一个ip地址，也非同源。</p>
+<h6 id="同源策略："><a href="#同源策略：" class="headerlink" title="同源策略："></a>同源策略：</h6><p>同源策略/SOP（Same origin policy）是一种约定，由Netscape公司1995年引入浏览器，它是浏览器最核心也最基本的安全功能，如果缺少了同源策略，浏览器很容易受到XSS、CSFR等攻击。所谓同源是指”协议+域名+端口”三者相同，即便两个不同的域名指向同一个ip地址，也非同源。</p>
 <p>同源策略限制以下几种行为：</p>
 <ul>
 <li>Cookie、LocalStorage 和 IndexDB 无法读取。</li>
@@ -473,50 +473,50 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center"><a href="http://www.a.com/a.js">http://www.a.com/a.js</a></td>
-<td align="center"><a href="http://www.a.com/b.js">http://www.a.com/b.js</a></td>
+<td align="center"><a href="http://www.a.com/a.js" target="_blank" rel="noopener">http://www.a.com/a.js</a></td>
+<td align="center"><a href="http://www.a.com/b.js" target="_blank" rel="noopener">http://www.a.com/b.js</a></td>
 <td align="center">同一域名下</td>
 <td align="center">允许</td>
 </tr>
 <tr>
-<td align="center"><a href="http://www.a.com/lab/a.js">http://www.a.com/lab/a.js</a></td>
-<td align="center"><a href="http://www.a.com/script/b.js">http://www.a.com/script/b.js</a></td>
+<td align="center"><a href="http://www.a.com/lab/a.js" target="_blank" rel="noopener">http://www.a.com/lab/a.js</a></td>
+<td align="center"><a href="http://www.a.com/script/b.js" target="_blank" rel="noopener">http://www.a.com/script/b.js</a></td>
 <td align="center">同一域名下不同文件夹</td>
 <td align="center">允许</td>
 </tr>
 <tr>
-<td align="center"><a href="http://www.a.com:8000/a.js">http://www.a.com:8000/a.js</a></td>
-<td align="center"><a href="http://www.a.com/b.js">http://www.a.com/b.js</a></td>
+<td align="center"><a href="http://www.a.com:8000/a.js" target="_blank" rel="noopener">http://www.a.com:8000/a.js</a></td>
+<td align="center"><a href="http://www.a.com/b.js" target="_blank" rel="noopener">http://www.a.com/b.js</a></td>
 <td align="center">同一域名，不同端口</td>
 <td align="center">不允许</td>
 </tr>
 <tr>
-<td align="center"><a href="http://www.a.com/a.js">http://www.a.com/a.js</a></td>
-<td align="center"><a href="https://www.a.com/b.js">https://www.a.com/b.js</a></td>
+<td align="center"><a href="http://www.a.com/a.js" target="_blank" rel="noopener">http://www.a.com/a.js</a></td>
+<td align="center"><a href="https://www.a.com/b.js" target="_blank" rel="noopener">https://www.a.com/b.js</a></td>
 <td align="center">同一域名，不同协议</td>
 <td align="center">不允许</td>
 </tr>
 <tr>
-<td align="center"><a href="http://www.a.com/a.js">http://www.a.com/a.js</a></td>
-<td align="center"><a href="http://70.32.92.74/b.js">http://70.32.92.74/b.js</a></td>
+<td align="center"><a href="http://www.a.com/a.js" target="_blank" rel="noopener">http://www.a.com/a.js</a></td>
+<td align="center"><a href="http://70.32.92.74/b.js" target="_blank" rel="noopener">http://70.32.92.74/b.js</a></td>
 <td align="center">域名和域名对应ip</td>
 <td align="center">不允许</td>
 </tr>
 <tr>
-<td align="center"><a href="http://www.a.com/a.js">http://www.a.com/a.js</a></td>
-<td align="center"><a href="http://script.a.com/b.js">http://script.a.com/b.js</a></td>
+<td align="center"><a href="http://www.a.com/a.js" target="_blank" rel="noopener">http://www.a.com/a.js</a></td>
+<td align="center"><a href="http://script.a.com/b.js" target="_blank" rel="noopener">http://script.a.com/b.js</a></td>
 <td align="center">主域相同，子域不同</td>
 <td align="center">不允许</td>
 </tr>
 <tr>
-<td align="center"><a href="http://www.a.com/a.js">http://www.a.com/a.js</a></td>
-<td align="center"><a href="http://a.com/b.js">http://a.com/b.js</a></td>
+<td align="center"><a href="http://www.a.com/a.js" target="_blank" rel="noopener">http://www.a.com/a.js</a></td>
+<td align="center"><a href="http://a.com/b.js" target="_blank" rel="noopener">http://a.com/b.js</a></td>
 <td align="center">同一域名，不同二级域名（同上）</td>
 <td align="center">不允许（cookie这种情况下也不允许访问）</td>
 </tr>
 <tr>
-<td align="center"><a href="http://www.cnblogs.com/a.js">http://www.cnblogs.com/a.js</a></td>
-<td align="center"><a href="http://www.a.com/b.js">http://www.a.com/b.js</a></td>
+<td align="center"><a href="http://www.cnblogs.com/a.js" target="_blank" rel="noopener">http://www.cnblogs.com/a.js</a></td>
+<td align="center"><a href="http://www.a.com/b.js" target="_blank" rel="noopener">http://www.a.com/b.js</a></td>
 <td align="center">不同域名</td>
 <td align="center">不允许</td>
 </tr>
@@ -602,7 +602,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
     <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'get js data from parent ---> '</span> <span class="token operator">+</span> window<span class="token punctuation">.</span>parent<span class="token punctuation">.</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
 <h5 id="3、location-hash-iframe"><a href="#3、location-hash-iframe" class="headerlink" title="3、location.hash + iframe"></a>3、location.hash + iframe</h5><p>实现原理： a欲与b跨域相互通信，通过中间页c来实现。 三个页面，不同域之间利用iframe的location.hash传值，相同域之间直接js访问来通信。</p>
-<p>具体实现：A域：a.html -> B域：b.html -> A域：c.html，a与b不同域只能通过hash值单向通信，b与c也不同域也只能单向通信，但c与a同域，所以c可通过parent.parent访问a页面所有对象。</p>
+<p>具体实现：A域：a.html -&gt; B域：b.html -&gt; A域：c.html，a与b不同域只能通过hash值单向通信，b与c也不同域也只能单向通信，但c与a同域，所以c可通过parent.parent访问a页面所有对象。</p>
 <p>3.1、a.html</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>iframe<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.domain2.com/b.html<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">display</span><span class="token punctuation">:</span>none<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
@@ -681,7 +681,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
 <p>总结：通过 iframe 的 src 属性由外域转向本地域，跨域数据即由 iframe 的 window.name 从外域传递到本地域。这个就巧妙地绕过了浏览器的跨域访问限制，但同时它又是安全操作。</p>
 <h5 id="5、postMessage跨域"><a href="#5、postMessage跨域" class="headerlink" title="5、postMessage跨域"></a>5、postMessage跨域</h5><p>postMessage是HTML5 XMLHttpRequest Level 2中的API，且是为数不多可以跨域操作的window属性之一，它可用于解决以下方面的问题：<br>a.） 页面和其打开的新窗口的数据传递<br>b.） 多窗口之间消息传递<br>c.） 页面与嵌套的iframe消息传递<br>d.） 上面三个场景的跨域数据传递</p>
-<p>用法：postMessage(data,origin)方法接受两个参数<br>data： html5规范支持任意基本类型或可复制的对象，但部分浏览器只支持字符串，所以传参时最好用JSON.stringify()序列化。<br>origin： 协议+主机+端口号，也可以设置为"*"，表示可以传递给任意窗口，如果要指定和当前窗口同源的话设置为"/"。</p>
+<p>用法：postMessage(data,origin)方法接受两个参数<br>data： html5规范支持任意基本类型或可复制的对象，但部分浏览器只支持字符串，所以传参时最好用JSON.stringify()序列化。<br>origin： 协议+主机+端口号，也可以设置为”*”，表示可以传递给任意窗口，如果要指定和当前窗口同源的话设置为”/“。</p>
 <p>1.）a.html</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>iframe<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.domain2.com/b.html<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">display</span><span class="token punctuation">:</span>none<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">       
@@ -951,7 +951,7 @@ socket<span class="token punctuation">.</span><span class="token function">liste
         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Client socket has closed.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-</script></li></ul>
+
             </div>
             <hr/>
 
